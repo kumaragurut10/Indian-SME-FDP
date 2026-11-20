@@ -8,7 +8,7 @@ Starting from a panel of SME financial-ratio data (6,061 firm-year observations,
 
 1. Constructs an **Altman Z″ score** and a three-zone distress classification (Distress / Grey Zone / Safe) from the raw accounting data.
 2. Builds a **one-year-ahead target**: predictors from year *t* are mapped to the distress label observed in year *t+1*.
-3. Performs a **multicollinearity audit** (VIF + correlation) to derive three nested predictor sets — **FULL** (21 features), **REDUCED** (17 features), and **STRICT** (13 features).
+3. Performs a **multicollinearity audit** (VIF + correlation) to derive three nested predictor sets **FULL** (21 features), **REDUCED** (17 features), and **STRICT** (13 features).
 4. **Winsorizes** predictors at the 1st/99th percentile using training-data-only limits to control outliers without leakage.
 5. Splits the data **temporally** into train (2016–2020), validation (2021–2022), test (2023–2024), and out-of-time/OOT (2025) periods.
 6. Trains and tunes **Logistic Regression, Decision Tree, and LightGBM** models on each of the three feature sets (nine model/feature combinations).
@@ -16,13 +16,12 @@ Starting from a panel of SME financial-ratio data (6,061 firm-year observations,
 8. Runs **paired firm-level bootstrap tests**, **probability calibration** (intercept/slope), and benchmarks against a **naïve persistence** baseline.
 9. Performs a **proxy-exclusion sensitivity analysis**, removing accounting ratios that act as near-direct proxies for the Altman label (e.g., Current ratio, TOL/TNW) and retrains a proxy-free STRICT LightGBM model, comparing it against a lagged Altman Z″ benchmark.
 10. Explains model behavior with **SHAP** (global importance, beeswarm, dependence plots, rank-change analysis) for both the original and proxy-free models.
-11. Generates a full set of **publication-ready figures and summary tables** (PNG/TIFF + Excel workbook).
 
 ## Data
 
 - **Input file:** `Financial SME Data.xlsx` (not included in this repository — see [Data](#data-access) below)
 - **Shape:** 6,061 firm-year rows × 29 columns (`Company Name`, `year`, and 27 financial ratios/figures such as Return on Equity, Net Profit Margin, DSCR, Debt to Equity, Current/Quick Ratio, CFO-based ratios, Net Worth, Working Capital, TOL/TNW, etc.)
-- **Target:** `Target_Distress` — a binary flag derived from the Altman Z″ zone one year ahead of the predictor year, built from a leak-safe `Predictor_Year → Target_Year = Predictor_Year + 1` merge.
+- **Target:** `Target_Distress` a binary flag derived from the Altman Z″ zone one year ahead of the predictor year, built from a leak-safe `Predictor_Year → Target_Year = Predictor_Year + 1` merge.
 - **Temporal splits:**
 
   | Split | Years | Observations | Distress rate |
