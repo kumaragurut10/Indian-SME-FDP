@@ -1,6 +1,6 @@
 # SME Financial Distress Prediction (SME_FDP)
 
-A research notebook that builds and validates one-year-ahead financial distress prediction models for small and medium enterprises (SMEs), using accounting-ratio predictors, an Altman Z″-based distress label, and a comparison of Logistic Regression, Decision Tree, and LightGBM classifiers — including out-of-time validation, calibration, bootstrap significance testing, and SHAP-based explainability.
+A research notebook that builds and validates one-year-ahead financial distress prediction models for small and medium enterprises (SMEs), using accounting-ratio predictors, an Altman Z″-based distress label, and a comparison of Logistic Regression, Decision Tree, and LightGBM classifiers including out-of-time validation, calibration, bootstrap significance testing, and SHAP-based explainability.
 
 ## Overview
 
@@ -103,8 +103,8 @@ All models substantially outperform the lagged Altman Z″ score and the naïve 
 
 Running the notebook also produces (not checked into version control by default):
 
-- `Financial_Distress_Research_Tables.xlsx` — consolidated results tables
-- `Research_Figures/` — 14 figure files (PNG + TIFF), including:
+- `Financial_Distress_Research_Tables.xlsx` consolidated results tables
+- `Research_Figures/` 14 figure files (PNG + TIFF), including:
   - Annual distress prevalence
   - Temporal data partition
   - Distress transition distribution
